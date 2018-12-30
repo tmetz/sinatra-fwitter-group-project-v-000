@@ -11,7 +11,7 @@ class TweetsController < ApplicationController
 
     get '/tweets' do
         if logged_in?
-            @tweets = Tweet.where(["user_id = ?", current_user.id)
+            @tweets = Tweet.all
             erb :'/tweets/index'
         else
             redirect to ("/failure")
