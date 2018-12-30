@@ -4,15 +4,19 @@ class UsersController < ApplicationController
         erb :'users/create_user'
     end
     
-    et "/login" do
+    get "/login" do
         erb :login
+    end
+
+    get "/users/:slug" do
+        redirect to ("/tweets")
     end
         
     post "/login" do
         user = User.find_by(:username => params[:username])
         if user && user.authenticate(params[:password])
             session[:user_id] = user.id
-            redirect "/tweets"
+            redirect "/users/#{user.slug}"
         else
             redirect "/failure"
         end
