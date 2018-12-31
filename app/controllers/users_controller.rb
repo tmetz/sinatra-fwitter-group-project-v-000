@@ -28,16 +28,13 @@ class UsersController < ApplicationController
 
     get '/logout' do
       if logged_in?
-        erb :'users/logout'
+        session.clear
+        redirect '/login'
       else
-        redirect '/signup'
+        redirect '/failure'
       end
     end
 
-    post '/logout' do
-      session.clear
-      erb :'/index'
-    end
 
     get "/users/:slug" do
         if logged_in?
