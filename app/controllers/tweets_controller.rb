@@ -10,7 +10,6 @@ class TweetsController < ApplicationController
     end
 
     get '/tweets' do
-      binding.pry
         if logged_in?
             @tweets = Tweet.all
             erb :'/tweets/index'
@@ -20,7 +19,6 @@ class TweetsController < ApplicationController
     end
 
     post '/tweets' do
-      # binding.pry
         Tweet.create(params[:tweet])
         redirect to ("/tweets")
     end

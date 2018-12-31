@@ -4,6 +4,15 @@ class UsersController < ApplicationController
         erb :'users/create_user'
     end
 
+    post '/signup' do
+      if !params[:username].empty? && !params[:email].empty? && !params[:password].empty?
+        User.create(username: params[:username], email: params[:email], password: params[:password])
+        redirect '/tweets'
+      else
+        redirect '/failure'
+      end
+    end
+
     get "/login" do
         erb :login
     end
