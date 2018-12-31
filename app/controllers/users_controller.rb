@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     get "/login" do
         erb :login
     end
-    
+
     # get "/users/:slug" do
     #     if logged_in?
     #         @tweets = Tweet.where(["user_id = ?", User.find_by_slug(params[:slug]).id)
@@ -31,14 +31,6 @@ class UsersController < ApplicationController
         erb :failure
     end
 
-    helpers do
-        def logged_in?
-            !!session[:user_id]
-        end
 
-        def current_user
-          User.find(session[:user_id])
-        end
-    end
 
 end
