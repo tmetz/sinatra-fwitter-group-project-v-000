@@ -1,4 +1,7 @@
 require './config/environment'
+require "./app/models/users"
+require "./app/models/tweets"
+
 
 class ApplicationController < Sinatra::Base
 
