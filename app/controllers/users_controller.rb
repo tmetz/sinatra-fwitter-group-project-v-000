@@ -5,9 +5,9 @@ class UsersController < ApplicationController
     end
 
     post '/signup' do
-      # binding.pry
       if !params[:username].empty? && !params[:email].empty? && !params[:password].empty?
-        User.create(username: params[:username], email: params[:email], password: params[:password])
+        @user = User.create(username: params[:username], email: params[:email], password: params[:password])
+        session[:user_id] = @user.id
         redirect "/tweets"
       else
         redirect "/signup"
