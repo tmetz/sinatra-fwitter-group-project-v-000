@@ -8,16 +8,16 @@ class UsersController < ApplicationController
       # binding.pry
       if !params[:username].empty? && !params[:email].empty? && !params[:password].empty?
         User.create(username: params[:username], email: params[:email], password: params[:password])
-        redirect '/tweets'
+        redirect "/tweets"
       else
-        redirect '/failure'
+        redirect "/signup"
       end
     end
 
     get "/login" do
         erb :login
     end
-
+    #
     # get "/users/:slug" do
     #     if logged_in?
     #         @tweets = Tweet.where(["user_id = ?", User.find_by_slug(params[:slug]).id)
