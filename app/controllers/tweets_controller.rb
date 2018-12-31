@@ -45,6 +45,7 @@ class TweetsController < ApplicationController
             @tweet = Tweet.find_by_id(params[:id])
             if @tweet.content != params[:tweet][:content]
                 @tweet.content = params[:tweet][:content]
+                @tweet.save
             end
             redirect to ("/tweets")
         end
