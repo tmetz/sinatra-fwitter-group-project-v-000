@@ -20,7 +20,11 @@ class TweetsController < ApplicationController
     end
 
     post '/tweets' do
-        Tweet.create(params[:tweet])
-        redirect to ("/tweets")
+        if params[:tweet][:content] == ""
+            redirect to ("/tweets/new")
+        else
+            Tweet.create(params[:tweet])
+            redirect to ("/tweets")
+        end
     end
 end
