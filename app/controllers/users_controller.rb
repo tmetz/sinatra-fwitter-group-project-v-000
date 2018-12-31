@@ -12,7 +12,6 @@ class UsersController < ApplicationController
       if !params[:username].empty? && !params[:email].empty? && !params[:password].empty?
         @user = User.create(username: params[:username], email: params[:email], password: params[:password])
         session[:user_id] = @user.id
-        # binding.pry
         redirect "/tweets"
       else
         redirect "/signup"
@@ -25,6 +24,19 @@ class UsersController < ApplicationController
         else
             erb :"/users/login"
         end
+    end
+
+    get '/logout' do
+      if logged_in?
+        erb :'users/logout'
+      else
+        redirect '/signup'
+      end
+    end
+
+    post '/logout' do
+      session.clear
+      erb :'/index'
     end
 
     get "/users/:slug" do
