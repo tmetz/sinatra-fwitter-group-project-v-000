@@ -10,7 +10,7 @@ class TweetsController < ApplicationController
     end
 
     get '/tweets' do
-      # binding.pry
+      binding.pry
         if logged_in?
             @tweets = Tweet.all
             erb :'/tweets/index'
