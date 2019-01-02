@@ -12,10 +12,11 @@ class TweetsController < ApplicationController
     get '/tweets' do
         if logged_in?
             @user = User.find(session[:user_id])
+            @all_users = User.all
             @tweets = Tweet.all
             erb :'/tweets/index'
         else
-            redirect to ("/failure")
+            redirect to ("/login")
         end
     end
 
@@ -25,6 +26,15 @@ class TweetsController < ApplicationController
         else
             Tweet.create(params[:tweet])
             redirect to ("/tweets")
+        end
+    end
+
+    get '/tweets/:id' do
+        if logged_in?
+            @tweet = Tweet.find_by_id(params[:id])
+            erb :'/tweets/show'
+        else
+            redirect to ("/login")
         end
     end
 

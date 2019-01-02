@@ -37,12 +37,9 @@ class UsersController < ApplicationController
 
 
     get "/users/:slug" do
-        if logged_in?
-            @tweets = Tweet.where(["user_id = ?"], User.find_by_slug(params[:slug]).id)
-            erb :'/tweets/index'
-        else
-            redirect to ("/failure")
-        end
+        @user = User.find_by_slug(params[:slug])
+        @tweets = Tweet.where(["user_id = ?", @user.id])
+        erb :'/tweets/index'
     end
 
     post "/login" do
