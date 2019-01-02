@@ -1,4 +1,9 @@
 <%= @tweet.content %>
 <br><br>
 <a href = "/tweets/<%= @tweet.id %>/edit">Edit Tweet</a><br>
-<a href = "/tweets/<%= @tweet.id %>/delete">Delete Tweet</a>
+
+<p>Delete Tweet:</p>
+<form method="post" action="/models/<%= @model.id %>/delete">
+  <input id="hidden" type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="delete">
+</form>
