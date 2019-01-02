@@ -6,6 +6,7 @@ class User <  ActiveRecord::Base
     new_name = self.username.downcase
     new_name.gsub!(/[!@%&"]/,'')
     new_name.gsub!(/\s/,'-')
+    return new_name
   end
 
   def self.find_by_slug(slug)
